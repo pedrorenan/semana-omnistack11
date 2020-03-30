@@ -5,13 +5,13 @@ module.exports = {
     const { page = 1, per = 5 } = request.query;
     const [count] = await connection('incidents').count();
     const incidents = await connection('incidents')
-      .joins('ongs', 'ongs.id', '=', 'incidents.ong_id')
+      .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
       .limit(per)
       .offset((page - 1) * 5)
       .select([
         'incidents.*',  
         'ongs.name', 
-        'ongs.emaiil', 
+        'ongs.email', 
         'ongs.whatsapp', 
         'ongs.city', 
         'ongs.uf'
